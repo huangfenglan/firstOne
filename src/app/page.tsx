@@ -1,9 +1,14 @@
+'use client';
+ 
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
 
-
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      欢迎来到我的项目
-    </div>
-  );
+const App: React.FC = ({children}:any) => {
+  return <div style={{height:"100%"}}>
+    {children}
+    <video src="https://gw.alipayobjects.com/v/huamei_gcee1x/afts/video/jXRBRK_VAwoAAAAAAAAAAAAAK4eUAQBr" autoPlay playsInline="" crossorigin="anonymous" style={{width: "100%", height:"100%", objectFit: "cover"}}/>
+  </div>
 }
+
+export default App;
