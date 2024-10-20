@@ -7,6 +7,8 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import CustomedLayout from "@/Components/CustomedLayout";
 import store from './store';
 import { Provider } from 'react-redux';
+import {ConfigProvider} from 'antd'
+import zhCN from 'antd/locale/zh_CN';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,21 +26,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(()=>{
-    console.log(22);
-    
-  },[])
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AntdRegistry>
-          <Provider store={store}>
-            <CustomedLayout>
-              {children}
-            </CustomedLayout>
-          </Provider>    
+          <ConfigProvider locale={zhCN}>
+            <Provider store={store}>
+              <CustomedLayout>
+                {children}
+              </CustomedLayout>
+            </Provider>  
+          </ConfigProvider>  
         </AntdRegistry>
       </body>
     </html>
