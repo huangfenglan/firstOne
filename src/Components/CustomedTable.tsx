@@ -20,7 +20,7 @@ const cTable= ({
   }
 
   useEffect(()=>{
-    getTableData(params)
+    // getTableData(params)
   },[params])
   
   return <Table 
@@ -50,7 +50,6 @@ const cTable= ({
     total:100,
     // total:dataSource?.total,
     onChange:(current:number,pageSize:number)=>{
-      console.log(current,'pageSize',pageSize);
       setParams({...params,current,pageSize})
       
     },

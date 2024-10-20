@@ -26,10 +26,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(()=>{
-    console.log(22);
-    
-  },[])
   return (
     <html lang="en">
       <body
