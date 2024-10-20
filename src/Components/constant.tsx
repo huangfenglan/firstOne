@@ -10,8 +10,14 @@ const LAYOUTMENUS=[
     {
       key: '2',
       icon: <UserOutlined />,
-      label: '测试页面',
-      keypath:"/test",
+      label: '测试redux',
+      keypath:"/pages",
+    },
+    {
+      key: '3',
+      icon: <UserOutlined />,
+      label: '用户',
+      keypath:"/users",
     }
   ]
 export {LAYOUTMENUS} 
