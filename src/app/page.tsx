@@ -1,8 +1,6 @@
 'use client';
  
-import React, { useEffect } from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
+import React from 'react';
 
 const App: React.FC = ({children}:any) => {
   return <div style={{height:"100%"}}>
