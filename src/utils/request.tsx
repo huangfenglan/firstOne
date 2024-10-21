@@ -5,7 +5,6 @@ const handleResult: any = (response: any) => {
     const { data } = response;
     const { code } = data;
     //这里做业务判断
-
     if (code !== 200) {
         const { message: msg } = data;
         Promise.reject(msg);
