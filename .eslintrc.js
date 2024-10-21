@@ -17,5 +17,6 @@
        // 在这里添加你自己的规则
        semi: ['error', 'always'],
        quotes: ['error', 'single'],
+       "no-console": 2,
      },
    };

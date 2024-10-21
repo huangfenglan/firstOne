@@ -1,46 +1,44 @@
 'use client';
 
-import localFont from "next/font/local";
-import "./globals.css";
-import {useEffect} from 'react'
+import localFont from 'next/font/local';
+import './globals.css';
+import { useEffect } from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import CustomedLayout from "@/Components/CustomedLayout";
+import CustomedLayout from '@/Components/CustomedLayout';
 import store from './store';
 import { Provider } from 'react-redux';
-import {ConfigProvider} from 'antd'
+import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+    src: './fonts/GeistVF.woff',
+    variable: '--font-geist-sans',
+    weight: '100 900',
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+    src: './fonts/GeistMonoVF.woff',
+    variable: '--font-geist-mono',
+    weight: '100 900',
 });
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <AntdRegistry>
-          <ConfigProvider locale={zhCN}>
-            <Provider store={store}>
-              <CustomedLayout>
-                {children}
-              </CustomedLayout>
-            </Provider>  
-          </ConfigProvider>  
-        </AntdRegistry>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            >
+                <AntdRegistry>
+                    <ConfigProvider locale={zhCN}>
+                        <Provider store={store}>
+                            <CustomedLayout>{children}</CustomedLayout>
+                        </Provider>
+                    </ConfigProvider>
+                </AntdRegistry>
+            </body>
+        </html>
+    );
 }
