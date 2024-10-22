@@ -5,7 +5,7 @@ import { memo, useState } from 'react';
 import { LAYOUTMENUS } from '../constant';
 import { useRouter } from 'next/navigation';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-// import './index.less'
+import './index.scss';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -42,6 +42,7 @@ const CustomedLayout = (props: any) => {
                 fontSize: '18px',
                 marginLeft: collapsed ? '30px' : '10px',
               }}
+              // className="custom"
             >
               用户管理
             </h2>

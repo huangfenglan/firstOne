@@ -17,7 +17,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-redux": "^9.1.2",
-    "reatc": "^0.0.1-security"
+    "reatc": "^0.0.1-security",
+    "sass": "^1.80.3"
   },
   "devDependencies": {
     "@types/node": "^20",
