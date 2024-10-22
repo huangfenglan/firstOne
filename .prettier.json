@@ -15,6 +15,6 @@
   "editor.formatOnSave": true,
   "eslint.autoFixOnSave": true,
   "prettier.singleQuote": true,
-  "prettier.tabWidth": 4,
+  "prettier.tabWidth": 2,
   "prettier.useTabs": true 
 }

@@ -1,5 +1,4 @@
-
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const conutSlice = createSlice({
   name: 'conut',
@@ -8,26 +7,26 @@ export const conutSlice = createSlice({
   },
   reducers: {
     increment: (state) => {
-      state.value += 1
+      state.value += 1;
     },
     decrement: (state) => {
-      state.value -= 1
+      state.value -= 1;
     },
     incrementByAmount: (state, action) => {
-      state.value += action.payload
+      state.value += action.payload;
     },
   },
-})
+});
 
-export const { increment, decrement, incrementByAmount } = conutSlice.actions
+export const { increment, decrement, incrementByAmount } = conutSlice.actions;
 
 //异步操作函数
 export const incrementAsync = (amount) => (dispatch) => {
   setTimeout(() => {
-    dispatch(incrementByAmount(amount))
-  }, 1000)
-}
+    dispatch(incrementByAmount(amount));
+  }, 1000);
+};
 
-export const selectCount = (state) => state.counter.value
+export const selectCount = (state) => state.counter.value;
 
-export default conutSlice.reducer
+export default conutSlice.reducer;
