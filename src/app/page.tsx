@@ -9,8 +9,8 @@ const App: React.FC = ({ children }: any) => {
             <video
                 src="https://gw.alipayobjects.com/v/huamei_gcee1x/afts/video/jXRBRK_VAwoAAAAAAAAAAAAAK4eUAQBr"
                 autoPlay
-                playsInline=""
-                crossorigin="anonymous"
+                playsInline
+                crossOrigin="anonymous"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
         </div>
