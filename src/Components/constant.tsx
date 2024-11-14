@@ -23,5 +23,17 @@ const LAYOUTMENUS = [
     label: '用户',
     keypath: '/users',
   },
+  {
+    key: '4',
+    icon: <UserOutlined />,
+    label: '测试',
+    keypath: '/test',
+  },
+  {
+    key: '5',
+    icon: <UserOutlined />,
+    label: '微前端',
+    keypath: '/pages/interview',
+  },
 ];
 export { LAYOUTMENUS };
