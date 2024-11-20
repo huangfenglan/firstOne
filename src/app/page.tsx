@@ -4,7 +4,6 @@ import { Button } from 'antd';
 import { useState } from 'react';
 
 export default () => {
-  let exam: any;
   let timer: any;
   const [isRequesting, setIsRequesting] = useState(false);
 
