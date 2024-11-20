@@ -1,20 +1,31 @@
 'use client';
 
-import React from 'react';
+import { Button } from 'antd';
+import { useState } from 'react';
 
-const App: React.FC = ({ children }: any) => {
+export default () => {
+  let exam: any;
+  let timer: any;
+  const [isRequesting, setIsRequesting] = useState(false);
+
+  const mockRequest = () => {
+    setIsRequesting(true);
+    return new Promise((resolve) => {
+      timer = setTimeout(() => {
+        resolve(true);
+        clearTimeout(timer);
+      }, 5000);
+    });
+  };
+  const testFun = async () => {
+    if (!timer) {
+      const data = await mockRequest();
+      setIsRequesting(false);
+    }
+  };
   return (
-    <div style={{ height: '100%' }}>
-      {children}
-      <video
-        src="https://gw.alipayobjects.com/v/huamei_gcee1x/afts/video/jXRBRK_VAwoAAAAAAAAAAAAAK4eUAQBr"
-        autoPlay
-        playsInline
-        crossOrigin="anonymous"
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    </div>
+    <Button disabled={isRequesting} onClick={testFun}>
+      测试
+    </Button>
   );
 };
-
-export default App;
