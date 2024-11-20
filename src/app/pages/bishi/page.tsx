@@ -1,6 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
+import Jielun from './Jieliu';
+import PaiXu from './paiXu';
+import TreeWithReduce from './arrToTree';
+import Dumiao from './dumiao';
 
 export default () => {
   // Please implement the function 'get' below to make the test cases pass.
@@ -60,14 +64,21 @@ export default () => {
     // => 3
     // get(object, ['a', '0', 'b', 'c']);
     // // => 3
-    get(object, 'a.b.c', 'default');
-    console.log(
-      get(object, 'a[0].b.c'),
-      get(object, ['a', '0', 'b', 'c']),
-      get(object, 'a.b.c', 'default'),
-      "get(object, 'a.b.c', 'default')"
-    );
+    // get(object, 'a.b.c', 'default');
+    // console.log(
+    //   get(object, 'a[0].b.c'),
+    //   get(object, ['a', '0', 'b', 'c']),
+    //   get(object, 'a.b.c', 'default'),
+    //   "get(object, 'a.b.c', 'default')"
+    // );
   }, []);
 
-  return <div>66</div>;
+  return (
+    <div>
+      <Jielun />
+      <PaiXu />
+      <TreeWithReduce />
+      <Dumiao />
+    </div>
+  );
 };

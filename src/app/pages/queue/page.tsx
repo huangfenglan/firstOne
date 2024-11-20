@@ -6,6 +6,7 @@ import Com from './Com';
 
 let exam: any;
 export default () => {
+  //手写队列
   class BlockingQueue {
     semaphore: any;
     queue: any;
@@ -14,6 +15,7 @@ export default () => {
       this.semaphore = { value: 0 };
     }
 
+    //生产者
     enqueue(item: any) {
       this.queue.push(item);
       this.semaphore.value++;
@@ -21,8 +23,9 @@ export default () => {
         this.semaphore.resolve();
       }
     }
-
+    //消费者
     dequeue() {
+      console.log(this.semaphore, 'this.semaphore');
       if (!this.semaphore.value) {
         return new Promise((resolve) => {
           this.semaphore.resolve = resolve;
