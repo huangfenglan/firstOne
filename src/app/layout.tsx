@@ -2,9 +2,8 @@
 
 import localFont from 'next/font/local';
 import './globals.css';
-import { useEffect } from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import CustomedLayout from '@/Components/CustomedLayout';
+
 import store from './store';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
@@ -34,7 +33,10 @@ export default function RootLayout({
         <AntdRegistry>
           <ConfigProvider locale={zhCN}>
             <Provider store={store}>
-              <CustomedLayout>{children}</CustomedLayout>
+              <div>{children}</div>
+              {/* <CustomedLayout>
+                <div>{children}</div>
+              </CustomedLayout> */}
             </Provider>
           </ConfigProvider>
         </AntdRegistry>

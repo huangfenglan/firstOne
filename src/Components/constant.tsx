@@ -1,39 +1,37 @@
-import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 
 const LAYOUTMENUS = [
   {
-    key: '1',
+    key: '/pages/redGreen',
     icon: <UserOutlined />,
-    label: '首页',
-    keypath: '/',
+    label: '红路灯',
+    keypath: '/pages/redGreen',
   },
   {
-    key: '2',
+    key: '/pages',
     icon: <UserOutlined />,
     label: '测试redux',
     keypath: '/pages',
   },
   {
-    key: '3',
+    key: '/pages/users',
     icon: <UserOutlined />,
     label: '用户',
-    keypath: '/users',
+    keypath: '/pages/users',
   },
   {
-    key: '4',
+    key: '/pages/queue',
     icon: <UserOutlined />,
     label: '测试',
-    keypath: '/test',
+    keypath: '/pages/queue',
   },
-  {
-    key: '5',
-    icon: <UserOutlined />,
-    label: '微前端',
-    keypath: '/pages/interview',
-  },
+  // {
+  //   key: '/pages/interview',
+  //   icon: <UserOutlined />,
+  //   label: '微前端',
+  //   keypath: '/pages/interview',
+  // },
 ];
-export { LAYOUTMENUS };
+
+const NOLAYOUT = ['/pages/logIn', '/pages/register'];
+export { LAYOUTMENUS, NOLAYOUT };

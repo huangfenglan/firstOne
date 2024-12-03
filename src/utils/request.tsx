@@ -1,15 +1,19 @@
 import axios from 'axios';
 import { requestTimeout, baseURL } from './constant';
+import { getMockData } from './userMock';
+import { message } from 'antd';
 
 const handleResult: any = (response: any) => {
-  const { data } = response;
-  const { code } = data;
+  const { code, message: msg, data } = response;
   //这里做业务判断
   if (code !== 200) {
-    const { message: msg } = data;
     Promise.reject(msg);
+    message.error(msg);
+    return;
+  } else {
+    message.success(msg);
+    return data;
   }
-  return data;
 };
 
 //创建实例
@@ -44,4 +48,17 @@ fetch.interceptors.response.use(
   }
 );
 
-export { fetch };
+const mockFetch = (url: string, method: string, data = {}) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const finalUrl = `${url}_${method}`;
+      const response = getMockData(finalUrl, data);
+      const { code, message } = response;
+      const result = handleResult(response);
+      code === 200 && resolve(result);
+      !(code === 200) && reject(message);
+    }, 1500);
+  });
+};
+
+export { fetch, mockFetch };

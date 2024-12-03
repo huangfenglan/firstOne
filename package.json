@@ -10,13 +10,18 @@
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.1",
+    "@ant-design/pro-components": "^2.7.2",
     "@reduxjs/toolkit": "^2.3.0",
     "antd": "^5.21.4",
     "axios": "^1.7.7",
+    "i": "^0.3.7",
     "next": "14.2.15",
+    "npm": "^10.9.1",
+    "pinyin-pro": "^3.26.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-redux": "^9.1.2",
+    "react-router-dom": "^7.0.2",
     "reatc": "^0.0.1-security",
     "sass": "^1.80.3"
   },
