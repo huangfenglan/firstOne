@@ -1,31 +1,33 @@
 'use client';
 
-import { Button } from 'antd';
-import { useState } from 'react';
+import { resolve } from 'path';
+import promise from './bishi/promise';
+import { useEffect } from 'react';
 
 export default () => {
-  let exam: any;
-  let timer: any;
-  const [isRequesting, setIsRequesting] = useState(false);
-
-  const mockRequest = () => {
-    setIsRequesting(true);
-    return new Promise((resolve) => {
-      timer = setTimeout(() => {
-        resolve(true);
-        clearTimeout(timer);
-      }, 5000);
+  const test = () => {
+    console.log(2);
+    let doit;
+    const prom = new Promise((resolve) => {
+      console.log(3);
+      doit = resolve;
+      console.log(6);
     });
-  };
-  const testFun = async () => {
-    if (!timer) {
-      const data = await mockRequest();
-      setIsRequesting(false);
+    prom.then(() => console.log(4));
+    async function s1() {
+      console.log(7);
+      await s2();
+      console.log(1); //2 3 6 7 9 1 8 4 5 10
+      doit();
+      console.log(8);
     }
+    async function s2() {
+      console.log(9);
+    }
+    s1();
+    console.log(5);
+    prom.then(() => console.log(10));
   };
-  return (
-    <Button disabled={isRequesting} onClick={testFun}>
-      测试
-    </Button>
-  );
+
+  return <div onClick={test}>测试11</div>;
 };

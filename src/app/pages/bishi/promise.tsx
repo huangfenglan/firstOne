@@ -11,8 +11,8 @@ export default () => {
   };
   const getData12 = () => {
     console.log(222);
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(12), 3000);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => reject(12), 3000);
     });
   };
   //测试promise.race
@@ -23,8 +23,13 @@ export default () => {
 
   //测试promise.all
   const testAll = async () => {
-    const data = await Promise.all([getData1(), getData12()]);
-    console.log(data, '最终all的结果');
+    // const data = await Promise.all([getData1(), getData12()]);
+    Promise.all([getData1(), getData12()])
+      .then(() => {})
+      .catch((res) => {
+        console.log(res, 'catch');
+      });
+    // console.log(data, '最终all的结果');
   };
   return (
     <Space>

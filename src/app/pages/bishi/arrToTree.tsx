@@ -48,16 +48,16 @@ export default () => {
     console.log(map, '之类有啥');
 
     flatArray.forEach((element) => {
-      const { parentId, id } = element;
+      const { parentId, id, name } = element;
       if (parentId) {
         const parent = map[parentId];
-        console.log(parentId, 'parentId', parent);
-
-        parent.children = [...parent?.children, { ...parent }];
+        parent.children.push(map[id]);
       } else {
         arr.push(map[id]);
       }
     });
+    console.log(arr, 'arr的数据');
+
     return arr;
   };
 

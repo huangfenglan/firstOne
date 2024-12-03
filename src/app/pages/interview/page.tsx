@@ -12,6 +12,7 @@ export default () => {
   const router = useRouter();
   const interviewTitles: InterviewTitle[] = [
     { title: '微前端', path: '/pages/interview/microApp' },
+    { title: '加载方式', path: '/pages/interview/loadMethod' },
   ];
 
   return (
