@@ -9,6 +9,7 @@ import { loginUsers } from '@/mock/users';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUserInfo } from '@/store/conut';
 import { User } from '@/services/userTs';
+import Link from 'next/link';
 
 interface Redux {
   conut: { usersList: User[] };
@@ -101,7 +102,16 @@ export default () => {
           >
             填充默认账号
           </a>
-          <a
+          <Link
+            style={{
+              float: 'right',
+              marginBottom: '24px',
+            }}
+            href="/register"
+          >
+            注册
+          </Link>
+          {/* <a
             style={{
               float: 'right',
               marginBottom: '24px',
@@ -109,7 +119,7 @@ export default () => {
             onClick={() => router.push('/register')}
           >
             注册
-          </a>
+          </a> */}
         </div>
       </LoginFormPage>
     </div>

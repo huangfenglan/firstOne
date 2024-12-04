@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '@/store/conut';
 import { FormItemProps, User } from '@/services/userTs';
+import Link from 'next/link';
 
 const { Item } = Form;
 interface Redux {
@@ -47,7 +48,11 @@ export default () => {
         height: '100vh',
       }}
     >
-      <Card title="用户注册" style={{ width: 600 }}>
+      <Card
+        title="用户注册"
+        style={{ width: 600 }}
+        extra={<Link href="/">返回</Link>}
+      >
         <CustomedForm
           form={form}
           onFinish={onFinish}
