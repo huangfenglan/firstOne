@@ -37,6 +37,12 @@ export const getcolumns = ({
       width: 80,
     },
     {
+      title: '邮箱',
+      dataIndex: 'email',
+      key: 'email',
+      width: 200,
+    },
+    {
       title: '部门',
       dataIndex: 'department',
       key: 'department',
@@ -66,6 +72,7 @@ export const getcolumns = ({
       dataIndex: 'option',
       key: 'option',
       fixed: 'right',
+      width: 180,
       render: (_: any, record: User) => {
         const {
           department: { ...rest },

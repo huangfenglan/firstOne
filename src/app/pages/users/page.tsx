@@ -93,7 +93,7 @@ export default () => {
   );
 
   useEffect(() => {
-    isOpen && form.resetFields();
+    !isOpen && form.resetFields();
   }, [isOpen]);
 
   return (

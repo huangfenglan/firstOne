@@ -36,7 +36,7 @@ export const userRegisterFormItems = (isEdit: boolean) =>
     {
       label: '邮箱',
       name: 'email',
-      children: <Input placeholder="请输入邮箱" disabled={isEdit} />,
+      children: <Input placeholder="请输入邮箱" />,
       rules: [...emialRules],
     },
     {

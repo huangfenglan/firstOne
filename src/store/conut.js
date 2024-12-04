@@ -8,6 +8,7 @@ export const conutSlice = createSlice({
         key: '13166666666',
         nickName: 'asfda',
         phone: '13166666666',
+        email: '896666664@qq.com',
         age: 23,
         password: '123456w',
         department: {
@@ -23,6 +24,7 @@ export const conutSlice = createSlice({
         key: '13166666661',
         nickName: 'asfda',
         phone: '13166666661',
+        email: '896666666@qq.com',
         age: 23,
         password: '123456w',
         department: {
