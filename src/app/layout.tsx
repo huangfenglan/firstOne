@@ -1,6 +1,5 @@
 'use client';
 
-import localFont from 'next/font/local';
 import './globals.css';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 
@@ -8,17 +7,31 @@ import store from './store';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { User } from '@/services/userTs';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
+interface Redux {
+  conut: { curUserInfo: User };
+}
+
+export const InnerContainer = ({ children }: { children: React.ReactNode }) => {
+  const curUserInfo = useSelector(
+    ({ conut: { curUserInfo } }: Redux) => curUserInfo
+  );
+  const router = useRouter();
+
+  useEffect(() => {
+    // const { phone } = curUserInfo;
+    // if (!phone) {
+    //   console.log('这里都有啥呀', curUserInfo, curUserInfo?.phone);
+    //   router.push('/');
+    // }
+  }, [curUserInfo]);
+
+  return <div>{children}</div>;
+};
 
 export default function RootLayout({
   children,
@@ -27,16 +40,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         <AntdRegistry>
           <ConfigProvider locale={zhCN}>
             <Provider store={store}>
-              <div>{children}</div>
-              {/* <CustomedLayout>
-                <div>{children}</div>
-              </CustomedLayout> */}
+              <InnerContainer children={children} />
             </Provider>
           </ConfigProvider>
         </AntdRegistry>

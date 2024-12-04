@@ -1,6 +1,6 @@
 'use client';
 
-import { Modal, Form, Button, Space } from 'antd';
+import { Modal, Form, Button, Space, Input } from 'antd';
 import { useState } from 'react';
 const { Item } = Form;
 
@@ -14,12 +14,20 @@ export default ({
   formProps = {},
   onFinish,
 }: any) => {
+  const layout = {
+    labelCol: { span: 6 },
+    wrapperCol: { span: 18 },
+  };
+  const tailLayout = {
+    wrapperCol: { offset: 18, span: 6 },
+  };
   const [isBtnLoading, setIsBtnLoading] = useState(false);
 
   const curOnFinish = async (values: any) => {
     setIsBtnLoading(true);
-    const isFinished = await onFinish(values);
-    isFinished && setIsBtnLoading(false);
+    const isFinished = await onFinish(values).finally(() => {
+      setIsBtnLoading(false);
+    });
     setIsOpen(false);
   };
 
@@ -29,22 +37,32 @@ export default ({
       open={isOpen}
       onOk={() => {}}
       footer={null}
+      width={800}
+      destroyOnClose
       onCancel={() => setIsOpen(false)}
       {...modalProps}
     >
-      <Form form={form} onFinish={curOnFinish} {...formProps}>
-        {formItems.map((itemProps: any) => (
-          <Item key={itemProps?.key} {...itemProps} />
-        ))}
+      <Form {...layout} form={form} {...formProps} onFinish={curOnFinish}>
         {children}
-        <Form.Item wrapperCol={{ offset: 16, span: 8 }}>
+        {formItems.map(({ name, children, ...rest }: any) => (
+          <Item key={name} name={name} children={children} {...rest} />
+        ))}
+        <Item {...tailLayout}>
           <Space>
             <Button type="primary" htmlType="submit" loading={isBtnLoading}>
               提交
             </Button>
-            <Button onClick={() => setIsOpen(false)}>取消</Button>
+            <Button
+              htmlType="button"
+              onClick={() => {
+                form?.resetFields();
+                setIsOpen(false);
+              }}
+            >
+              取消
+            </Button>
           </Space>
-        </Form.Item>
+        </Item>
       </Form>
     </Modal>
   );

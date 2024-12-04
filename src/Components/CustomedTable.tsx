@@ -1,7 +1,23 @@
 'use client';
-import { Table } from 'antd';
+import { Spin, Table } from 'antd';
 import { useState, memo, useEffect } from 'react';
-import { fetch } from '@/utils/request';
+import { useSelector } from 'react-redux';
+import { getMockResult } from '@/utils/request';
+import { User } from '@/services/userTs';
+
+interface TableTs {
+  url: string;
+  columns: any[];
+  params: {
+    [key: string]: any;
+  };
+  paginationProps: any;
+  [key: string]: any;
+}
+
+interface CountTs {
+  conut: { usersList: User[] };
+}
 
 const cTable = ({
   url,
@@ -9,58 +25,51 @@ const cTable = ({
   params: extraParams = {}, //除了current,pagesize这些参数以外的参数
   paginationProps = {},
   ...rest
-}: any) => {
+}: TableTs) => {
+  const [isLoadingData, setIsLoadingData] = useState(false);
+  const usersList = useSelector(
+    ({ conut: { usersList } }: CountTs) => usersList
+  );
   const [params, setParams] = useState({
     ...extraParams,
     current: 1,
     pageSize: 10,
   });
-  const [dataSource, setDataSource] = useState<any>({});
+  const [dataSource, setDataSource] = useState<any[]>([]);
 
-  const getTableData = async (param: any) => {
-    const result = await fetch({ url, method: 'get', data: { ...param } });
-    const { data: tableData } = result;
-    setDataSource(tableData);
+  const getTableData = async () => {
+    setIsLoadingData(true);
+    const result: any = (await getMockResult(usersList, '')) || [];
+    setIsLoadingData(false);
+    setDataSource(result);
   };
 
   useEffect(() => {
-    // getTableData(params)
-  }, [params]);
+    getTableData();
+  }, [usersList]);
+  const total = !!usersList && usersList?.length;
 
   return (
-    <Table
-      // dataSource={dataSource?.items}
-      dataSource={[
-        {
-          key: '1',
-          name: '胡彦斌',
-          age: 32,
-          address: '西湖区湖底公园1号',
-        },
-        {
-          key: '2',
-          name: '胡彦祖',
-          age: 42,
-          address: '西湖区湖底公园1号',
-        },
-      ]}
-      columns={columns}
-      pagination={{
-        current: params?.current,
-        pageSize: params?.pageSize,
-        showSizeChanger: true,
-        showQuickJumper: true,
-        // showTotal:(total) => `共 ${dataSource?.total} 条`
-        showTotal: (total) => `共 ${100} 条`,
-        total: 100,
-        // total:dataSource?.total,
-        onChange: (current: number, pageSize: number) => {
-          setParams({ ...params, current, pageSize });
-        },
-        ...paginationProps,
-      }}
-      {...rest}
-    />
+    <Spin tip="加载中，请稍后" spinning={isLoadingData}>
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        scroll={{ x: 1300 }}
+        pagination={{
+          current: params?.current,
+          pageSize: params?.pageSize,
+          showSizeChanger: true,
+          showQuickJumper: true,
+          showTotal: (total) => `共 ${total} 条`,
+          total: total,
+          onChange: (current: number, pageSize: number) => {
+            setParams({ ...params, current, pageSize });
+          },
+          ...paginationProps,
+        }}
+        {...rest}
+      />
+    </Spin>
   );
 };
 

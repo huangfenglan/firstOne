@@ -2,8 +2,14 @@ import axios from 'axios';
 import { requestTimeout, baseURL } from './constant';
 import { getMockData } from './userMock';
 import { message } from 'antd';
+import { User } from '@/services/userTs';
+interface TesponseTs {
+  code: number;
+  message: string;
+  data: any;
+}
 
-const handleResult: any = (response: any) => {
+const handleResult = (response: any) => {
   const { code, message: msg, data } = response;
   //这里做业务判断
   if (code !== 200) {
@@ -47,12 +53,12 @@ fetch.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 const mockFetch = (url: string, method: string, data = {}) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const finalUrl = `${url}_${method}`;
       const response = getMockData(finalUrl, data);
+
       const { code, message } = response;
       const result = handleResult(response);
       code === 200 && resolve(result);
@@ -61,4 +67,13 @@ const mockFetch = (url: string, method: string, data = {}) => {
   });
 };
 
-export { fetch, mockFetch };
+const getMockResult = (data: User[], msg = '获取数据成功') => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      !!msg && message.success(msg);
+      resolve(data);
+    }, 1500);
+  });
+};
+
+export { fetch, mockFetch, getMockResult };

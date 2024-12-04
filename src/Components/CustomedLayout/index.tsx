@@ -5,11 +5,10 @@ import { memo, useEffect, useState } from 'react';
 import { LAYOUTMENUS } from '../constant';
 import { useRouter } from 'next/navigation';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import './index.scss';
+// import './index.scss';
 
 const { Header, Content, Sider } = Layout;
 
-const layoutClass = 'custom';
 const contentBgc = '#fff';
 
 const CustomedLayout = (props: any) => {
@@ -25,11 +24,10 @@ const CustomedLayout = (props: any) => {
 
   return (
     <div>
-      <Layout className={layoutClass} style={{ height: '100vh' }}>
+      <Layout style={{ height: '100vh' }}>
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <Header style={{ padding: 0 }}>
             <div
-              className={`${layoutClass}__siderHeader`}
               style={{
                 display: 'flex',
                 alignItems: 'center',

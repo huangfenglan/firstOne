@@ -6,21 +6,32 @@ import CustomedForm from '@/Components/CustomedFrom';
 import { registerUsers } from '@/mock/users';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from '@/store/conut';
+import { FormItemProps, User } from '@/services/userTs';
 
 const { Item } = Form;
+interface Redux {
+  conut: { usersList: User[] };
+}
 
 export default () => {
+  const dispatch = useDispatch();
+  const usersList = useSelector(({ conut: { usersList } }: Redux) => usersList);
+
   const [form] = Form.useForm();
   const router = useRouter();
   const [isFormLoading, setIsFormLoading] = useState(false);
-  const onFinish = async (values: any) => {
-    setIsFormLoading(true);
-    const data = await registerUsers(values);
-    setIsFormLoading(false);
-    // form.resetFields();
-    router.push('/login');
 
-    console.log(data, 'mock是否成功');
+  //登录
+  const onFinish = async (values: User) => {
+    setIsFormLoading(true);
+    const data = await registerUsers({ ...values, usersList }).finally(() =>
+      setIsFormLoading(false)
+    );
+
+    dispatch(addUser(data));
+    router.push('/');
   };
 
   useEffect(() => {
@@ -42,7 +53,7 @@ export default () => {
           onFinish={onFinish}
           isBtnLoading={isFormLoading}
         >
-          {userRegisterFormItems().map((val: any) => (
+          {userRegisterFormItems(false).map((val: FormItemProps) => (
             <Item {...val} key={val?.name} />
           ))}
         </CustomedForm>

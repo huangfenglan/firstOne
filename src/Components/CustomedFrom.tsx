@@ -1,12 +1,20 @@
 import { Form, Space, Button } from 'antd';
+import type { FormInstance } from 'antd';
 const { Item } = Form;
+
+interface CustomFormTs {
+  children: React.ReactNode;
+  form: FormInstance;
+  isBtnLoading: boolean;
+  [key: string]: any;
+}
 
 export default ({
   children,
-  form = {},
+  form,
   isBtnLoading = false, //form是否正在提交中
   ...rest
-}: any) => {
+}: CustomFormTs) => {
   const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 },

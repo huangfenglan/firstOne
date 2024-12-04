@@ -20,3 +20,14 @@ export const pswRules = [
     message: '‌密码长度为6到18位，包含字母和数字',
   },
 ];
+
+export const emialRules = [
+  {
+    required: true,
+    message: '请输入邮箱！',
+  },
+  {
+    pattern: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/,
+    message: '请正确输入您的邮箱',
+  },
+];
