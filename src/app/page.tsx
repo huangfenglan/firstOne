@@ -2,7 +2,7 @@
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginFormPage, ProFormText } from '@ant-design/pro-components';
-import { Space, theme } from 'antd';
+import { Form, Space, theme } from 'antd';
 import { phoneRules, pswRules } from './config';
 import { useRouter } from 'next/navigation';
 import { loginUsers } from '@/mock/users';
@@ -13,8 +13,13 @@ import { User } from '@/services/userTs';
 interface Redux {
   conut: { usersList: User[] };
 }
+const defaultAccount = {
+  phone: '13166666666',
+  password: '123456w',
+};
 
 export default () => {
+  const [form] = Form.useForm();
   const usersList = useSelector(({ conut: { usersList } }: Redux) => usersList);
   const dispatch = useDispatch();
 
@@ -36,6 +41,7 @@ export default () => {
       }}
     >
       <LoginFormPage
+        form={form}
         backgroundImageUrl="https://mdn.alipayobjects.com/huamei_gcee1x/afts/img/A*y0ZTS6WLwvgAAAAAAAAAAAAADml6AQ/fmt.webp"
         logo="https://github.githubassets.com/favicons/favicon.png"
         backgroundVideoUrl="https://gw.alipayobjects.com/v/huamei_gcee1x/afts/video/jXRBRK_VAwoAAAAAAAAAAAAAK4eUAQBr"
@@ -87,13 +93,20 @@ export default () => {
           style={{
             marginBlockEnd: 24,
           }}
-          onClick={() => router.push('/register')}
         >
+          <a
+            onClick={() => {
+              form.setFieldsValue({ ...defaultAccount });
+            }}
+          >
+            填充默认账号
+          </a>
           <a
             style={{
               float: 'right',
               marginBottom: '24px',
             }}
+            onClick={() => router.push('/register')}
           >
             注册
           </a>
