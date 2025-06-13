@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import { useEffect } from 'react';
 import Com from './Com';
 
+let data = 6;
 let exam: any;
 export default () => {
   //手写队列
@@ -19,8 +20,12 @@ export default () => {
     enqueue(item: any) {
       this.queue.push(item);
       this.semaphore.value++;
-      if (this.semaphore.value === 1) {
-        this.semaphore.resolve();
+      console.log(this.semaphore, 'this.semaphore', this.queue);
+
+      if (this.semaphore.value <= 1) {
+        // const
+        const item = this.queue.shift();
+        !!this.semaphore?.resolve && this.semaphore?.resolve(item);
       }
     }
     //消费者
@@ -43,7 +48,7 @@ export default () => {
 
   // 生产者
   const producer = async () => {
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 3; i++) {
       await exam.enqueue(i);
       console.log(`Produced: ${i}`);
     }
@@ -51,7 +56,9 @@ export default () => {
 
   // 消费者
   const consumer = async () => {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
+      console.log(i, '这里走了多少次');
+
       const item = await exam.dequeue();
       console.log(`Consumed: ${item}`);
     }
@@ -61,6 +68,23 @@ export default () => {
     <div>
       <Button onClick={consumer}>消费者</Button>
       <Button onClick={producer}>生产者</Button>
+      <Button
+        onClick={async () => {
+          data = data + 1;
+          await exam.enqueue(data);
+        }}
+      >
+        生产11
+      </Button>
+      <Button
+        onClick={async () => {
+          const res = await exam.dequeue();
+          console.log(res, '这里是消费的数据');
+        }}
+      >
+        消费者11
+      </Button>
+
       <div>
         <Com />
       </div>

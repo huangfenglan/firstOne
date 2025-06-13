@@ -21,8 +21,8 @@ export default () => {
     });
 
     Promise.myRace([promise1, promise2]).then((value) => {
-      console.log(value); // "two"，因为 promise2 先完成
+      console.log(value, '自己的race'); // "two"，因为 promise2 先完成
     });
-  });
+  }, []);
   return <div>之类是啥</div>;
 };

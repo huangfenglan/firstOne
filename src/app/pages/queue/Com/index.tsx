@@ -9,9 +9,7 @@ export default () => {
     if (typeof obj === 'object') {
       //A-----
       if (weakMap.has(obj)) return weakMap.get(obj);
-
       const newObj = Array.isArray(obj) ? [] : {};
-
       // B----
       weakMap.set(obj, newObj);
 

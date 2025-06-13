@@ -60,6 +60,20 @@ export default () => {
 
     return arr;
   };
+  // 利用两层filter实现
+  function getData(arr) {
+    // 利用两层filter实现
+    let data = arr.filter((item) => {
+      item.children = arr.filter((e) => {
+        return item.id === e.parentId;
+      });
+      return !item.parentId;
+    });
+
+    return data;
+  }
+  const res = getData(flatArr);
+  console.log('res', res);
 
   return (
     <>

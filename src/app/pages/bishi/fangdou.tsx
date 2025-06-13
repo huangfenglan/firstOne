@@ -1,6 +1,6 @@
 'use client';
 import { Button, Space } from 'antd';
-import { log } from 'console';
+import { log } from 'node:console';
 
 const testObj = { name: 'zhoujielun' };
 
@@ -22,11 +22,25 @@ export default () => {
     };
   };
 
+  /**
+   * 节流
+   */
+  const throttle = function (fn, delay) {
+    let isInThrottle = false;
+    return function (...args) {
+      if (!isInThrottle) {
+        fn.apply(this, args);
+        isInThrottle = true;
+        setTimeout(() => (isInThrottle = false), delay);
+      }
+    };
+  };
+
   //手写call
   Function.prototype.myCall = function (obj: any, ...rest) {
     const context = obj || window;
     const fn = Symbol();
-    context[fn] = this;
+    context[fn] = this; //this指的是当前调用的函数
     console.log(context, '----之前', rest);
     const result = context[fn](...rest);
     delete context[fn];
@@ -44,17 +58,28 @@ export default () => {
   };
 
   function testMyCall() {
+    console.log(this);
+
     console.log(arguments, 'myCall');
   }
 
   return (
     <Space>
-      <Button
+      {/* <Button
         onClick={debounce(function () {
           console.log('发送网络请求');
         }, 500)}
       >
         防抖
+      </Button> */}
+      <Button
+        onClick={() =>
+          debounce(function () {
+            console.log('发送网络请求');
+          }, 500)()
+        }
+      >
+        防抖11
       </Button>
       <Button onClick={() => testMyCall.myCall(testObj, 'singer')}>call</Button>
       <Button

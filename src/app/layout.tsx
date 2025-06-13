@@ -41,13 +41,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AntdRegistry>
-          <ConfigProvider locale={zhCN}>
-            <Provider store={store}>
-              <InnerContainer children={children} />
-            </Provider>
-          </ConfigProvider>
-        </AntdRegistry>
+        <div id="sub-react">
+          <AntdRegistry>
+            <ConfigProvider locale={zhCN}>
+              <Provider store={store}>
+                <InnerContainer children={children} />
+              </Provider>
+            </ConfigProvider>
+          </AntdRegistry>
+        </div>
       </body>
     </html>
   );

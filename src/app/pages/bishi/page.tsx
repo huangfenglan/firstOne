@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import Jielun from './Jieliu';
+import Jielun from './fangdou';
 import PaiXu from './paiXu';
 import TreeWithReduce from './arrToTree';
 import Dumiao from './dumiao';
@@ -12,6 +12,10 @@ import Promise from './promise';
 import PromiseAll from './promiseAll';
 import MyPromiseRace from './myPromiseRace';
 import MyPromiseAll from './myPromiseAll';
+import PromiseSource from './promiseSource.js';
+import Bianping from './bianping';
+import GetKey from './getKey';
+import Zifuchuan from './zifuchuan';
 
 export default () => {
   return (
@@ -27,6 +31,10 @@ export default () => {
       <PromiseAll />
       <MyPromiseRace />
       <MyPromiseAll />
+      <PromiseSource />
+      <Bianping />
+      <GetKey />
+      <Zifuchuan />
     </div>
   );
 };

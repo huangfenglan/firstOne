@@ -1,4 +1,5 @@
 'use client';
+import { log } from 'console';
 import { useEffect } from 'react';
 
 export default () => {
@@ -23,12 +24,24 @@ export default () => {
     const data = [...arguments];
     return data.reduce((a, b) => a + b, 0);
   }
+
+  const add = (...args) => {
+    const f = add.bind(null, ...args);
+    console.log(args, '这里是bind');
+
+    f.sum = () => {
+      return args.reduce((sum, value) => (sum += value), 0);
+    };
+    return f;
+  };
+
   useEffect(() => {
     const addData = curring(addPara);
     const data = addData(1, 2, 3)(1)();
     // const data1 = addData(2, 3)();
     // const data3 = addData(9, 12, 90)(9)();
     console.log(data, 'data1');
+    console.log(add(1)(2, 3)(4, 5, 6).sum());
   }, []);
   return <div>这里是有啥</div>;
 };
