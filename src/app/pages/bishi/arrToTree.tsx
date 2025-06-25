@@ -72,7 +72,7 @@ export default () => {
 
     return data;
   }
-  const res = getData(flatArr);
+  const res = getData(flatArray);
   console.log('res', res);
 
   return (

@@ -16,6 +16,7 @@ import PromiseSource from './promiseSource.js';
 import Bianping from './bianping';
 import GetKey from './getKey';
 import Zifuchuan from './zifuchuan';
+import FlatObj from './flatObj';
 
 export default () => {
   return (
@@ -35,6 +36,7 @@ export default () => {
       <Bianping />
       <GetKey />
       <Zifuchuan />
+      <FlatObj />
     </div>
   );
 };

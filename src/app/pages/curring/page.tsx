@@ -27,7 +27,7 @@ export default () => {
 
   const add = (...args) => {
     const f = add.bind(null, ...args);
-    console.log(args, '这里是bind');
+    console.log(args, '这里是bind', f);
 
     f.sum = () => {
       return args.reduce((sum, value) => (sum += value), 0);

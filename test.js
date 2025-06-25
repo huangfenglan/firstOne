@@ -1,3 +1,12 @@
-const arr = [1, [2, [3, [4, 5]]], 6];
+var fn = [];
+for (var i = 0; i < 10; i++) {
+  fn[i] = function (p) {
+    console.log(i + p, 'iiii', i); //10
+  };
+}
 
-console.log();
+fn[5](5);
+var data = { a: 10, b: 20 };
+console.log('' + i + '' + data);
+
+// i=5
