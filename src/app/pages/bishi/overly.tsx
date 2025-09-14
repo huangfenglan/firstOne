@@ -4,21 +4,16 @@ import { Modal, Button } from 'antd';
 
 export default () => {
   const styles: any = {
-    // position: 'fixed',
+    position: 'fixed',
     width: '100%',
-    height: '600px',
-
-    background: 'red',
-    // lineHeight: '100%',
+    height: '100%',
+    left: 0,
+    top: 0,
+    background: 'rgba(0,0,0,.5)',
+    lineHeight: '100%',
     // display: 'flex',
     // justifyContent: 'center',
     // alignItems: 'center',
-  };
-
-  const domStyle = {
-    width: '500px',
-    height: '1200px',
-    background: 'green',
   };
 
   const middleDiv = {
@@ -28,25 +23,27 @@ export default () => {
     // positon: 'absolute',
     // right: '50%',
     // top: '50%',
-    // display: 'inlineBlock',
+    display: 'inlineBlock',
   };
 
   const initFunc = () => {
-    const overly = document.getElementById('overly');
-    const rect = overly.getBoundingClientRect();
-    const zhou = document.documentElement.clientHeight || window.innerHeight;
-    console.log(rect, '这里是啥', zhou);
+    console.log('当前目标数据222');
+    document.onclick = (e) => {
+      console.log(e.target, '当前目标数据');
+    };
   };
 
   useEffect(() => {
     initFunc();
+    return () => {
+      document.removeEventListener('click');
+    };
   }, []);
 
   return (
     <div>
       <Button>打开弹窗</Button>
-      <div style={{ ...domStyle }}>这里是需要调试</div>
-      <div id="overly" style={{ ...styles }} onClick={initFunc}>
+      <div id="overly" style={{ ...styles }}>
         <div id="model" style={{ ...middleDiv }}>
           弹窗
         </div>

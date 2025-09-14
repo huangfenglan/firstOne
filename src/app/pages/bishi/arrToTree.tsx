@@ -73,7 +73,7 @@ export default () => {
     return data;
   }
   const res = getData(flatArray);
-  console.log('res', res);
+  console.log('filter的方法', res);
 
   return (
     <>
@@ -81,7 +81,7 @@ export default () => {
       <div
         onClick={() => {
           const treeWithReduce = buildTreeWithReduce(flatArray);
-          console.log(treeWithReduce, 'treeWithReduce');
+          console.log(treeWithReduce, 'treeWithReducefilter的方法');
         }}
       >
         reduce方法
@@ -90,7 +90,7 @@ export default () => {
       <div
         onClick={() => {
           const treeWithReduce = buildTreeWithObj(flatArray);
-          console.log(treeWithReduce, 'buildTreeWithObj');
+          console.log(treeWithReduce, 'buildTreeWithObjfilter的方法');
         }}
       >
         使用对象引用和递归

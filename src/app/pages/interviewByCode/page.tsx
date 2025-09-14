@@ -1,32 +1,40 @@
 'use client';
-import { useEffect } from 'react';
+
+import exp from 'constants';
+import { useRef, useState } from 'react';
+import { useLocalCache } from './hooks';
+import { Button, Space } from 'antd';
+import { resolve } from 'path';
 
 export default () => {
-  const getVlaue = (obj, keystring) => {
-    const finalstr = keystring
-      .replace('[', '.')
-      .replace(']', '.')
-      .split('.')
-      .filter((val) => !!val)
-      .map((val) => (isNaN(Number(val)) ? val : Number(val)));
+  const { value, updateValue } = useLocalCache('testKey', [], 1000 * 20);
+  const [loading, setLoading] = useState(false);
 
-    let value = obj;
-    for (var i = 0; i < finalstr.length; i++) {
-      const key = finalstr[i];
-      value = value[key];
-
-      if (!value) {
-        return '默认数据666';
-      }
-    }
-    return value;
+  const getFetchData = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(['测试字段66']);
+      }, 25 * 1000);
+    });
   };
 
-  useEffect(() => {
-    var object = { ae: [{ b: { c: 3 } }] };
-    const data = getVlaue(object, 'ae[0].b.ct');
-    console.log(data, '999');
-  }, []);
+  const btnClick = async () => {
+    if (value?.length === 0) {
+      const result = await getFetchData();
+      updateValue(result);
+    }
+  };
 
-  return <div>测试</div>;
+  return (
+    <Space>
+      <Button onClick={btnClick}>更改数据</Button>
+      <Button
+        onClick={() => {
+          console.log('这里有啥11', value);
+        }}
+      >
+        获取数据
+      </Button>
+    </Space>
+  );
 };

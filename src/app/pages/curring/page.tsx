@@ -35,13 +35,30 @@ export default () => {
     return f;
   };
 
+  function sum(a) {
+    let currentSum = a;
+
+    function add(b) {
+      currentSum += b;
+      return add;
+    }
+
+    add.toString = function () {
+      return currentSum;
+    };
+
+    return add;
+  }
+
   useEffect(() => {
-    const addData = curring(addPara);
-    const data = addData(1, 2, 3)(1)();
+    // const addData = curring(addPara);
+    // const data = addData(1, 2, 3)(1)();
     // const data1 = addData(2, 3)();
     // const data3 = addData(9, 12, 90)(9)();
-    console.log(data, 'data1');
-    console.log(add(1)(2, 3)(4, 5, 6).sum());
+    // console.log(data, 'data1');
+    // console.log(add(1)(2, 3)(4, 5, 6).sum());
+
+    console.log(sum(1)(2)(3).toString(), '这里的结果事实');
   }, []);
   return <div>这里是有啥</div>;
 };

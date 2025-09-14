@@ -17,6 +17,7 @@ import Bianping from './bianping';
 import GetKey from './getKey';
 import Zifuchuan from './zifuchuan';
 import FlatObj from './flatObj';
+import Fraction from './fraction';
 
 export default () => {
   return (
@@ -37,6 +38,7 @@ export default () => {
       <GetKey />
       <Zifuchuan />
       <FlatObj />
+      <Fraction />
     </div>
   );
 };
